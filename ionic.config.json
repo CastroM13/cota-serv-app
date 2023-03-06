@@ -1,0 +1,7 @@
+{
+  "name": "Cota Serv App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
