@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RefresherCustomEvent } from '@ionic/angular';
 
-import { DataService, Message } from '../services/data.service';
+import { QuotaType } from '../interfaces/quota-type';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,13 @@ import { DataService, Message } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  quotas: QuotaType[] = [];
+  loading: boolean = false;
   constructor(private data: DataService) { }
+
+  onSearchChange = (event: any) => {
+    console.log(event);
+  }
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -17,8 +24,17 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  getQuotas(): void {
+    this.loading = true
+    this.data.getQuotas()
+      .subscribe(quotas => {
+        this.loading = false;
+        this.quotas = quotas;
+      });
+  }
+
+  ionViewWillEnter() {
+    this.getQuotas();
   }
 
 }

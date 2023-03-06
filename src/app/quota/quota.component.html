@@ -1,0 +1,7 @@
+<ion-item *ngIf="quota" [routerLink]="'/quota/' + quota.tag" [detail]="false">
+  <ion-label class="ion-text-wrap">
+    <h2>
+      {{ quota.title }}
+    </h2>
+  </ion-label>
+</ion-item>
