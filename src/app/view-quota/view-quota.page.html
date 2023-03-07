@@ -3,14 +3,27 @@
     <ion-buttons slot="start">
       <ion-back-button [text]="getBackButtonText()" defaultHref="/"></ion-back-button>
     </ion-buttons>
+    <ion-title>Valor em R$ de {{tag}} x Tempo</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true" *ngIf="quota">
-  <apx-chart
-    [series]="chartOptions.series!"
-    [chart]="chartOptions.chart!"
-    [xaxis]="chartOptions.xaxis!"
-    [title]="chartOptions.title!"
-  ></apx-chart>
+<ion-content [style]="'--background: url(assets/images/'+tag+'.jpeg)'" [fullscreen]="true" *ngIf="quota">
+  <ion-card>
+    <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+      [title]="chartOptions.title!"></apx-chart>
+  </ion-card>
+  <ion-card>
+    <ion-list [inset]="true">
+      <ion-item *ngFor="let i of quota | quotaValue">
+        <ion-label>
+          {{i.detail}}
+        </ion-label>
+        <ion-label class="brl">
+          R$ {{ i.value }}
+        </ion-label>
+        <ion-label class="dol">
+          US$ {{ i.value | dollar | async }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

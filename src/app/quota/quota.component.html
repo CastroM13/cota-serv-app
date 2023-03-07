@@ -1,7 +1,5 @@
-<ion-item *ngIf="quota" [routerLink]="'/quota/' + quota.tag" [detail]="false">
-  <ion-label class="ion-text-wrap">
-    <h2>
-      {{ quota.title }}
-    </h2>
-  </ion-label>
-</ion-item>
+<div class="card" *ngIf="quota" [routerLink]="'/quota/' + quota.tag">
+  <img [src]="'assets/images/'+quota.tag+'.jpeg'" onerror="this.src='assets/images/error.png'"/>
+  <div class="overlay"></div>
+  <div class="title">{{ quota.title }}</div>
+</div>

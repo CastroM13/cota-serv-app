@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+    justify-content: space-between;
+}
+
+app-quota {
+    height: 180px;
+    width: 180px;
+    max-width: 45vw;
+    padding-bottom: 16px;
+    overflow: hidden;
+}
+
+.dollar-card {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(45deg, #8cd275, #f7ebb7);
+    border-radius: 4px;
+    font-size: 2em;
+    font-weight: 200;
+    text-align: center;
+    position: relative;
+}
+
+.dollar-card::before {
+    content: " 💵 ";
+    position: absolute;
+    left: 24px;
+}

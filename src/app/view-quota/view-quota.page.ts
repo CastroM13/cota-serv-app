@@ -25,8 +25,9 @@ export type ChartOptions = {
 export class ViewQuotaPage implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
-
+  predictedValues = ["preço médio", "centavos r$/lp", "valor r$ ", "5 dias", "r$/litro", "valor r$", "valor r$/t", "r$/kg vivo", "branco", "valorvista", "valor r$/kg", "valor r$/t*"];
   loading: boolean = false;
+  tag = '';
   public quota!: Quota[];
 
   constructor(
@@ -40,10 +41,14 @@ export class ViewQuotaPage implements OnInit {
     return dat;
   }
 
+  findName(v: Quota): string {
+    return Object.keys(v).find(i => this.predictedValues.includes(i))!
+  }
+
   ngOnInit() {
     this.loading = true;
-    const tag = this.activatedRoute.snapshot.paramMap.get('id') as string;
-    this.data.getQuotaById(tag)
+    this.tag = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    this.data.getQuotaById(this.tag)
       .subscribe((quota: Quota[]) => {
         this.loading = false;
         this.quota = quota;
@@ -51,15 +56,15 @@ export class ViewQuotaPage implements OnInit {
           series: [
             {
               name: "Cotas",
-              data: this.quota?.map((v: any) => v.realValue ? parseFloat(v.realValue?.replace(',','.')!) : parseFloat((v["preço médio"])?.replace(',','.')!)) as []
+              data: this.quota?.map((v: any) => v.realValue ? parseFloat(v.realValue?.replace(',','.')!) : parseFloat((v[this.findName(v)])?.replace(',','.')!)) as []
             }
           ],
           chart: {
             height: 350,
-            type: "line"
-          },
-          title: {
-            text: `Valor em R$ de ${tag} x Tempo`
+            type: "line",
+            toolbar: {
+              show: false
+            }
           },
           xaxis: {
             categories: this.quota?.map((v: any) => {

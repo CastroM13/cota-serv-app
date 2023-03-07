@@ -9,7 +9,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <ion-list>
+  <div class="wrapper">
+    <div class="dollar-card">US$ {{null | dollar | async}}</div>
     <app-quota *ngFor="let quota of quotas" [quota]="quota"></app-quota>
-  </ion-list>
+  </div>
 </ion-content>

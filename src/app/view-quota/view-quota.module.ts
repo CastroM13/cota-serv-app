@@ -7,6 +7,10 @@ import { IonicModule } from '@ionic/angular';
 
 import { ViewQuotaPageRoutingModule } from './view-quota-routing.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { AppModule } from '../app.module';
+import { QuotaValuePipe } from '../pipes/quota-value.pipe';
+import { DollarPipe } from '../pipes/dollar.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,8 +18,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FormsModule,
     IonicModule,
     NgApexchartsModule,
-    ViewQuotaPageRoutingModule
+    ViewQuotaPageRoutingModule,
+    SharedModule
   ],
-  declarations: [ViewQuotaPage,]
+  declarations: [ViewQuotaPage]
 })
 export class ViewQuotaPageModule {}

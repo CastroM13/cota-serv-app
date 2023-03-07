@@ -22,4 +22,8 @@ export class DataService {
   public getQuotaById(tag: string): Observable<Quota[]> {
     return this.http.get<Quota[]>('http://localhost:3000/cota/'+tag);
   }
+
+  public getDollar(): Observable<number> {
+    return this.http.get<number>('http://localhost:3000/dolar');
+  }
 }

@@ -1,0 +1,1 @@
+export const predictedValues = ["valor r$*", "preço médio", "centavos r$/lp", "valor r$ ", "5 dias", "r$/litro", "valor r$", "valor r$/t", "r$/kg vivo", "branco", "valorvista", "valor r$/kg", "valor r$/t*"];
