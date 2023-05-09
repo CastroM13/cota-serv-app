@@ -11,7 +11,8 @@ export class QuotaValuePipe implements PipeTransform {
       const val = Object.keys(x).find(i => predictedValues.includes(i)) as any
       return {
         value: x[val],
-        detail: val
+        detail: val,
+        date: x["date"] || x[""] || null,
       }
     })
   }

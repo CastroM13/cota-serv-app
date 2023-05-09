@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
+    padding: 12px;
     justify-content: space-between;
 }
 
@@ -23,10 +23,16 @@ app-quota {
     font-weight: 200;
     text-align: center;
     position: relative;
+    font-weight: bold;
 }
 
 .dollar-card::before {
     content: " 💵 ";
     position: absolute;
     left: 24px;
+}
+
+.user {
+    font-size: 2em !important;
+    margin: 0 12px 0 8px !important;
 }

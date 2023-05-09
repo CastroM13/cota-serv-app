@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-searchbar placeholder="Busque cotas" (ionChange)="onSearchChange($event)" [debounce]="250" ></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-icon class="user" *ngIf="user" (click)="openUser()" slot="end" name="person-circle"></ion-icon>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 

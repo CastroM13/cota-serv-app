@@ -1,0 +1,25 @@
+<div id="login">
+  <div class="logo">
+    <h1><img src="assets/icon/icon.svg">Crie uma conta</h1>
+  </div>
+  <div class="body">
+    <div id="form">
+      <label for="name">Nome</label>
+      <input name="name" class="input" type="text">
+      <label for="email">Email</label>
+      <input class="input" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text">
+      <label for="password">Senha</label>
+      <div class="input wrapper">
+        <input [type]="passwordVisible ? 'text' : 'password'" id="password" name="password" />
+        <button (click)="passwordVisible = !passwordVisible" id="showPassword">
+          <ion-icon *ngIf="passwordVisible" name="eye-sharp"></ion-icon>
+          <ion-icon *ngIf="!passwordVisible" name="eye-off"></ion-icon>
+        </button>
+      </div>
+      <button class="button" (click)="register()">Criar conta</button>
+    </div>
+  </div>
+  <div class="footer">
+    <button routerLink="/login">Voltar</button>
+  </div>
+</div>
