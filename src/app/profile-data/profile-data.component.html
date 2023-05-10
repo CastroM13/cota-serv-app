@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Atualizar dados do perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="body">
+    <label for="name">Nome</label>
+    <input [value]="user!.name" name="name" class="input" type="text">
+    <label for="email">Email</label>
+    <input [value]="user!.email" class="input" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" type="text">
+    <button class="button" (click)="updateData()">Atualizar dados</button>
+  </div>
+</ion-content>

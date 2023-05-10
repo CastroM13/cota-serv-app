@@ -34,4 +34,24 @@ export class AuthenticationService {
       }
     });
   }
+
+  public changeProfileData(changes: User) {
+    return this.http.patch('http://localhost:3000/user', {
+      ...changes
+    },
+    {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    });
+  }
+
+  public deleteAccount() {
+    return this.http.delete('http://localhost:3000/user/password',
+    {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    });
+  }
 }
