@@ -14,6 +14,6 @@
   
   <div class="wrapper">
     <div class="dollar-card">US$ {{null | dollar | async}}</div>
-    <app-quota *ngFor="let quota of quotas" [quota]="quota"></app-quota>
+    <app-quota *ngFor="let quota of quotas | orderBy" [quota]="quota"></app-quota>
   </div>
 </ion-content>

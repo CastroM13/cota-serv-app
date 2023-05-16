@@ -13,6 +13,7 @@ import { UserComponent } from '../user/user.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  favorites: {name: string; _id: string}[] = [];
   user?: User;
   quotas: QuotaType[] = [];
   loading: boolean = false;
@@ -28,27 +29,27 @@ export class HomePage {
   }
 
   refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
+    this.getQuotas(ev);
   }
 
-  getQuotas(): void {
+  getQuotas(ev?: any): void {
     this.loading = true
     this.data.getQuotas()
       .subscribe(quotas => {
         this.loading = false;
-        this.quotas = quotas;
+        this.quotas = quotas.map(q => ({...q, favorite: !!this.user?.favorites?.find(x => x.name === q.tag)}));
+        if (ev) (ev as RefresherCustomEvent).detail.complete();
       });
   }
 
   ionViewWillEnter() {
-    this.getQuotas();
     this.token = localStorage.getItem('token');
     this.auth.getUserData(this.token!)
     .subscribe((res: User) => {
       if (res) {
         this.user = res;
+        localStorage.setItem('user', JSON.stringify(res))
+        this.getQuotas();
       }
     });
   }

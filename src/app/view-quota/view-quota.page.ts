@@ -7,13 +7,15 @@ import {
   ApexAxisChartSeries,
   ApexChart,
   ApexXAxis,
-  ApexTitleSubtitle
+  ApexTitleSubtitle,
+  ApexYAxis
 } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
   title: ApexTitleSubtitle;
 };
 
@@ -56,7 +58,7 @@ export class ViewQuotaPage implements OnInit {
           series: [
             {
               name: "Cotas",
-              data: this.quota?.map((v: any) => v.realValue ? parseFloat(v.realValue?.replace(',','.')!) : parseFloat((v[this.findName(v)])?.replace(',','.')!)) as []
+              data: (this.quota?.map((v: any) => v.realValue ? parseFloat(v.realValue?.replace(',', '.')!) : parseFloat((v[this.findName(v)])?.replace(',', '.')!)) as []).slice(0, 6)
             }
           ],
           chart: {
@@ -66,10 +68,27 @@ export class ViewQuotaPage implements OnInit {
               show: false
             }
           },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: '22px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+              },
+            },
+          }, 
           xaxis: {
+            labels: {
+              style: {
+                colors: 'white',
+                fontSize: '12px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 400,
+              },
+            },
             categories: this.quota?.map((v: any) => {
-              const d = this.convertToDate(v.date as string);
-              return v[""] || (d.getDate()).toString().padStart(2,'0') + '/' + (d.getMonth() + 1 ).toString().padStart(2,'0');
+              const d = this.convertToDate((v.date || v[""]) as string);
+              return (d.getDate()).toString().padStart(2, '0') + '/' + (d.getMonth() + 1).toString().padStart(2, '0');
             })
           }
         };

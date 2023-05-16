@@ -1,5 +1,6 @@
 <div class="card" *ngIf="quota" [routerLink]="'/quota/' + quota.tag">
-  <img [src]="'assets/images/'+quota.tag+'.jpeg'" onerror="this.src='assets/images/error.png'"/>
+  <img class="icon" (click)="favorite($event)" [src]="quota.favorite ? 'assets/icon/favorite-on.svg' : 'assets/icon/favorite-off.svg'" />
+  <img class="cover" [src]="'assets/images/'+quota.tag+'.jpeg'" onerror="this.src='assets/images/error.png'"/>
   <div class="overlay"></div>
   <div class="title">{{ quota.title }}</div>
 </div>

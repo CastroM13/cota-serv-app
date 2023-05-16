@@ -54,4 +54,33 @@ export class AuthenticationService {
       }
     });
   }
+
+  public getFavorites() {
+    return this.http.get<{name: string; _id: string}[]>('http://localhost:3000/user/favorite',
+    {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    });
+  }
+
+  public postFavorite(quota: any) {
+    return this.http.post('http://localhost:3000/user/favorite', {
+      name: quota
+    },
+    {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    });
+  }
+
+  public deleteFavorite(quota: any) {
+    return this.http.delete('http://localhost:3000/user/favorite?id='+quota,
+    {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
+    });
+  }
 }
